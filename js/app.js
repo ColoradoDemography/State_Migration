@@ -9,7 +9,9 @@ require([
         "esri/core/watchUtils",
         "esri/renderers/support/ClassBreakInfo",
         "esri/Basemap",
-        "esri/layers/VectorTileLayer"
+        "esri/layers/VectorTileLayer",
+        "esri/widgets/Print",
+        "esri/widgets/Expand"
       ], function (
         Map,
         MapView,
@@ -21,7 +23,9 @@ require([
         watchUtils,
         ClassBreakInfo,
         Basemap,
-        VectorTileLayer
+        VectorTileLayer,
+        Print,
+        Expand
       ) {
     
     let fieldSelect, classSelect, numClassesInput, slider;
@@ -52,7 +56,7 @@ require([
         color: "black",
         font: {  // autocast as new Font()
           family: "Playfair Display",
-          size: 10,
+          size: 8,
           weight: "bold"
         }
       },
@@ -86,19 +90,60 @@ require([
     var view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [-107.349, 39.202], // longitude, latitude
+      center: [-105.8, 39.202], // longitude, latitude
       zoom: 6
     });
     
     //view.ui.move("zoom", "bottom-right");
     
-    view.ui.add(
+    var legend = new Legend({
+        view: view
+    })
+    
+    var expand1 = new Expand({
+      view: view,
+      content: legend,
+      expandIconClass: "esri-icon-documentation",
+      expandTooltip: "Legend"
+    });
+    
+    var print = new Print({
+        view: view,
+        // specify your own print service
+        printServiceUrl:
+          "https://dola-online.maps.arcgis.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+      });
+    
+    var expand2 = new Expand({
+        view: view,
+        content: print,
+        expandIconClass: "esri-icon-printer",
+        expandTooltip: "Print"
+    })
+    
+    view.ui.add([expand1], "bottom-left");
+    view.ui.add([expand2], "bottom-right");
+    
+    /*view.ui.add(
           new Legend({
             view: view
           }),
           "bottom-left"
-    );
+    );*/
     
+              
+    /*view.when(function () {
+          var print = new Print({
+            view: view,
+            // specify your own print service
+            printServiceUrl:
+              "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+          });
+
+          // Add widget to the top right corner of the view
+          view.ui.add(print, "top-right");
+        });
+*/
     view.ui.add("infoDiv", "top-right");
 
         // Generate a new renderer each time the user changes an input parameter
@@ -147,7 +192,7 @@ require([
                   color: [50, 50, 50, 0.6]
                 }
               },
-              defaultLabel: "nope",
+              defaultLabel: "NA",
               classBreakInfos: [
                 {
                   minValue: -100,
