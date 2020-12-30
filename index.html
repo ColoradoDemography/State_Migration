@@ -25,7 +25,7 @@
     <body>
     <div id="viewDiv"></div>
     <div id="infoDiv" class="esri-widget">
-      Select Field:
+      Select Industry:
       <select id="field-select" class="esri-widget">
         <option value="Total" selected>All Industries</option>
         <option value="Goods">&#160;Goods-Producing</option>
@@ -40,14 +40,14 @@
         <option value="Education">&#160;&#160;Education & Health</option>
         <option value="Leisure">&#160;&#160;Leisure & Hospitality</option>
         <option value="OtherServ">&#160;&#160;Other Services</option>
-        <option value="Unclass">&#160;Unclassified</option>
+        <!--<option value="Unclass">&#160;Unclassified</option>-->
       </select>
       Classification:
       <select id="class-select" class="esri-widget">
-        <option value="bls" selected>Fixed (11 breaks only)</option>
-        <option value="equal-interval">Equal interval</option>
+        <option value="bls" selected>Fixed (9 breaks only)</option>
+<!--        <option value="equal-interval">Equal interval</option>
         <option value="quantile">Quantile</option>
-        <option value="natural-breaks">Natural Breaks</option>
+        <option value="natural-breaks">Natural Breaks</option>-->
         <option value="manual">Manual</option>
       </select>
       Breaks:
@@ -55,9 +55,9 @@
         type="number"
         id="num-classes"
         class="esri-widget"
-        value="11"
+        value="9"
         min="2"
-        max="11"
+        max="9"
       />
     </div>
   </body>

@@ -31,22 +31,22 @@ require([
     let fieldSelect, classSelect, numClassesInput, slider;
     
      var popupQCEW = {
-        title: "{County} County Percent Change<br>June 2019 to June 2020",
+        title: "{County} County Change<br>June 2019 to June 2020",
         content:
-            "<b>All Industries:</b>  {Total}%<br>"+
-            "<b> Goods-Producting:</b>  {Goods}%<br>"+
-            "<b>  Natural Resources & Mining:</b>  {NatRes}%<br>"+
-            "<b>  Construction:</b>  {Const}%<br>"+
-            "<b>  Manufacturing:</b>  {Manuf}%<br>"+
-            "<b> Service-Producing</b>  {Service}%<br>"+
-            "<b>  Trade, Transportation & Utilities:</b>  {Trade}%<br>"+
-            "<b>  Information:</b>  {Inform}%<br>"+
-            "<b>  Financial Activities:</b>  {Finance}%<br>"+
-            "<b>  Professional & Business Services:</b>  {Prof}%<br>"+
-            "<b>  Education & Health:</b>  {Education}%<br>"+
-            "<b>  Leisure & Hospitality:</b>  {Leisure}%<br>"+
-            "<b>  Other Services:</b>  {OtherServ}%<br>"+
-            "<b> Unclassified:</b>  {Unclass}%<br>"
+            "<b>All Industries:</b>  {TotalA} Jobs, {Total}%<br>"+
+            "<b> Goods-Producting:</b>  {GoodsA} Jobs, {Goods}%<br>"+
+            "<b>  Natural Resources & Mining:</b>  {NatResA} Jobs, {NatRes}%<br>"+
+            "<b>  Construction:</b>  {ConstA} Jobs, {Const}%<br>"+
+            "<b>  Manufacturing:</b>  {ManufA} Jobs, {Manuf}%<br>"+
+            "<b> Service-Producing</b>  {ServiceA} Jobs, {Service}%<br>"+
+            "<b>  Trade, Transportation & Utilities:</b>  {TradeA} Jobs, {Trade}%<br>"+
+            "<b>  Information:</b>  {InformA} Jobs, {Inform}%<br>"+
+            "<b>  Financial Activities:</b>  {FinanceA} Jobs, {Finance}%<br>"+
+            "<b>  Professional & Business Services:</b>  {ProfA} Jobs, {Prof}%<br>"+
+            "<b>  Education & Health:</b>  {EducationA} Jobs, {Education}%<br>"+
+            "<b>  Leisure & Hospitality:</b>  {LeisureA} Jobs, {Leisure}%<br>"+
+            "<b>  Other Services:</b>  {OtherServA} Jobs, {OtherServ}%<br>"/*+
+            "<b> Unclassified:</b>  {Unclass}%<br>"*/
     };
         
     const labelClass = {
@@ -194,7 +194,7 @@ require([
               },
               defaultLabel: "NA",
               classBreakInfos: [
-                {
+                /*{
                   minValue: -100,
                   maxValue: -8.0001,
                   symbol: {
@@ -207,14 +207,14 @@ require([
                       },
                   label: "< -8%" // label for symbol in legend
                   }
-                },
+                },*/
                 {
-                  minValue: -8,
+                  minValue: -100,
                   maxValue: -6.0001,
                    symbol: {
                       type: "simple-fill",
                       style: "solid",
-                      color: "#b2182b",
+                      color: [255,0,0],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
@@ -228,7 +228,7 @@ require([
                    symbol: {
                       type: "simple-fill",
                       style: "solid",
-                      color: "#d6604d",
+                      color: [255,63,63],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
@@ -242,7 +242,7 @@ require([
                    symbol: {
                       type: "simple-fill",
                       style: "solid",
-                      color: "#f4a582",
+                      color: [255,127,127],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
@@ -256,7 +256,7 @@ require([
                    symbol: {
                       type: "simple-fill",
                       style: "solid",
-                      color: "#fddbc7",
+                      color: [255,191,191],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
@@ -270,7 +270,7 @@ require([
                    symbol: {
                       type: "simple-fill",
                       style: "solid",
-                      color: "#f7f7f7",
+                      color: [255,255,255],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
@@ -284,7 +284,7 @@ require([
                    symbol: {
                       type: "simple-fill",
                       style: "solid",
-                      color: "#d1e5f0",
+                      color: [191,191,255],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
@@ -298,7 +298,7 @@ require([
                    symbol: {
                       type: "simple-fill",
                       style: "solid",
-                      color: "#92c5de",
+                      color: [127,127,255],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
@@ -312,7 +312,7 @@ require([
                    symbol: {
                       type: "simple-fill",
                       style: "solid",
-                      color: "#4393c3",
+                      color: [63,63,255],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
@@ -322,18 +322,18 @@ require([
                 },
                 {
                   minValue: 6.0001,
-                  maxValue: 8,
+                  maxValue: 100,
                    symbol: {
                      type: "simple-fill",
                       style: "solid",
-                      color: "#2166ac",
+                      color: [0,0,255],
                       outline: {
                         color: [50, 50, 50, 0.6],
                         width: 0.4
                       },
                   label: "> 75%" // label for symbol in legend
                    }
-                },
+                }/*,
                 {
                   minValue: 8.0001,
                   maxValue: 100,
@@ -347,7 +347,7 @@ require([
                       },
                   label: "> 75%" // label for symbol in legend
                    }
-                }
+                }*/
               ]
             };
 
