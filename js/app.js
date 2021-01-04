@@ -121,8 +121,8 @@ require([
         expandTooltip: "Print"
     })
     
-    view.ui.add([expand1], "bottom-left");
     view.ui.add([expand2], "bottom-right");
+   // view.ui.add([expand2], "bottom-right");
     
     /*view.ui.add(
           new Legend({
@@ -144,7 +144,7 @@ require([
           view.ui.add(print, "top-right");
         });
 */
-    view.ui.add("infoDiv", "top-right");
+    view.ui.add("infoDiv", "top-right");view.ui.add([expand1], "top-right");
 
         // Generate a new renderer each time the user changes an input parameter
         view.when().then(function () {
