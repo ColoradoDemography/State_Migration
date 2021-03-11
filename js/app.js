@@ -31,7 +31,7 @@ require([
     let fieldSelect, classSelect, numClassesInput, slider;
     
      var popupQCEW = {
-        title: "{County} County Change<br>June 2019 to June 2020",
+        title: "{County} County Change<br>September 2019 to September 2020",
         content:
             "<b>All Industries:</b>  {TotalA} Jobs, {Total}%<br>"+
             "<b> Goods-Producting:</b>  {GoodsA} Jobs, {Goods}%<br>"+
@@ -67,7 +67,7 @@ require([
     };
     
     var layer = new FeatureLayer({
-        title: "QCEW June 2019 to June 2020 Change",
+        title: "QCEW September 2019 to September 2020 Change",
         url: "https://services.arcgis.com/IamIM3RJ5xHykalK/arcgis/rest/services/QCEW_June_Changes/FeatureServer/0",
         popupTemplate: popupQCEW,
         labelingInfo: [labelClass]
