@@ -38,7 +38,7 @@ require([
             "<b>  Natural Resources & Mining:</b>  {NatResA} Jobs, {NatRes}%<br>"+
             "<b>  Construction:</b>  {ConstA} Jobs, {Const}%<br>"+
             "<b>  Manufacturing:</b>  {ManufA} Jobs, {Manuf}%<br>"+
-            "<b> Service-Producing</b>  {ServiceA} Jobs, {Service}%<br>"+
+            "<b> Service-Providing</b>  {ServiceA} Jobs, {Service}%<br>"+
             "<b>  Trade, Transportation & Utilities:</b>  {TradeA} Jobs, {Trade}%<br>"+
             "<b>  Information:</b>  {InformA} Jobs, {Inform}%<br>"+
             "<b>  Financial Activities:</b>  {FinanceA} Jobs, {Finance}%<br>"+
