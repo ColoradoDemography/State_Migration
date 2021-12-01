@@ -31,7 +31,7 @@ require([
     let fieldSelect, classSelect, numClassesInput, slider;
     
      var popupQCEW = {
-        title: "{County} County Change<br>March 2020 to March 2021",
+        title: "{County} County Change<br>June 2020 to June 2021",
         content:
             "<b>All Industries:</b>  {TotalA} Jobs, {Total}%<br>"+
             "<b> Goods-Producting:</b>  {GoodsA} Jobs, {Goods}%<br>"+
@@ -209,7 +209,7 @@ require([
                   }
                 },*/
                 {
-                  minValue: -100,
+                  minValue: -200,
                   maxValue: -6.0001,
                    symbol: {
                       type: "simple-fill",
@@ -322,7 +322,7 @@ require([
                 },
                 {
                   minValue: 6.0001,
-                  maxValue: 100,
+                  maxValue: 200,
                    symbol: {
                      type: "simple-fill",
                       style: "solid",
