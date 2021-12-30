@@ -67,7 +67,7 @@ require([
     };
     
     var layer = new FeatureLayer({
-        title: "QCEW March 2020 to March 2021 Change",
+        title: "QCEW June 2020 to June 2021 Change",
         url: "https://services.arcgis.com/IamIM3RJ5xHykalK/arcgis/rest/services/QCEW_June_Changes/FeatureServer/0",
         popupTemplate: popupQCEW,
         labelingInfo: [labelClass]
