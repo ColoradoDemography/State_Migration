@@ -29,11 +29,44 @@ require([
       ) {
     
     let fieldSelect, classSelect, numClassesInput, slider;
+
+    var popupContent = "Default";
     
-     var popupQCEW = {
-        title: "{County} County Change<br>June 2019 to June 2021",
-        content:
-            "<b>All Industries:</b>  {TotalA} Jobs, {Total}%<br>"+
+    popupSelect = document.getElementById("field-select");
+    popupSelect.addEventListener("change", (event) => {
+      const popupLabel = popupSelect.options[popupSelect.selectedIndex].text;
+      if (popupLabel == "CenNet21"|"CenIn21"|"CenOut21"){
+          popupMigration.content = 
+            "Cen21"
+      } else if (popupLabel == "CenNet19"|"CenIn19"|"CenOut19"){
+          popupMigration.content = 
+            "Cen19"
+      } else if (popupLabel == "IRSNet21"|"IRSIn21"|"IRSOut21"){
+          popupMigration.content = 
+            "IRS21"
+      } else if (popupLabel == "IRSNet20"|"IRSIn20"|"IRSOut20"){
+          popupMigration.content = 
+            "IRS20"
+      } else if (popupLabel == "IRSNet19"|"IRSIn19"|"IRSOut19"){
+        popupMigration.content = 
+            "IRS19"
+      }
+    });
+
+    function generatePopup() { 
+      const popupLabel = popupSelect.options[popupSelect.selectedIndex].text;
+      switch (popupLabel){
+        case "CenNet21":
+          case "CenIn21":
+            case "CenOut21":  
+            
+      }
+    }
+    
+    var popupMigration = {
+        title: "{NAME} Migration to and from Colorado",
+        content: popupContent
+            /*"<b>All Industries:</b>  {TotalA} Jobs, {Total}%<br>"+
             "<b> Goods-Producting:</b>  {GoodsA} Jobs, {Goods}%<br>"+
             "<b>  Natural Resources & Mining:</b>  {NatResA} Jobs, {NatRes}%<br>"+
             "<b>  Construction:</b>  {ConstA} Jobs, {Const}%<br>"+
@@ -45,7 +78,7 @@ require([
             "<b>  Professional & Business Services:</b>  {ProfA} Jobs, {Prof}%<br>"+
             "<b>  Education & Health:</b>  {EducationA} Jobs, {Education}%<br>"+
             "<b>  Leisure & Hospitality:</b>  {LeisureA} Jobs, {Leisure}%<br>"+
-            "<b>  Other Services:</b>  {OtherServA} Jobs, {OtherServ}%<br>"/*+
+            "<b>  Other Services:</b>  {OtherServA} Jobs, {OtherServ}%<br>"+
             "<b> Unclassified:</b>  {Unclass}%<br>"*/
     };
         
@@ -67,9 +100,9 @@ require([
     };
     
     var layer = new FeatureLayer({
-        title: "QCEW June 2019 to June 2021 Change",
-        url: "https://services.arcgis.com/IamIM3RJ5xHykalK/arcgis/rest/services/QCEW_June_Changes/FeatureServer/0",
-        popupTemplate: popupQCEW,
+        title: "State to State Migration",
+        url: "https://services.arcgis.com/IamIM3RJ5xHykalK/arcgis/rest/services/State_Migration_Multiple/FeatureServer/0",
+        popupTemplate: popupMigration,
         labelingInfo: [labelClass]
     });
     
