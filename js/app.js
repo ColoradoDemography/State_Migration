@@ -29,43 +29,40 @@ require([
       ) {
     
     let fieldSelect, classSelect, numClassesInput, slider;
-
-    var popupContent = "Default";
     
-    popupSelect = document.getElementById("field-select");
-    popupSelect.addEventListener("change", (event) => {
-      const popupLabel = popupSelect.options[popupSelect.selectedIndex].text;
-      if (popupLabel == "CenNet21"|"CenIn21"|"CenOut21"){
-          popupMigration.content = 
-            "Cen21"
-      } else if (popupLabel == "CenNet19"|"CenIn19"|"CenOut19"){
-          popupMigration.content = 
-            "Cen19"
-      } else if (popupLabel == "IRSNet21"|"IRSIn21"|"IRSOut21"){
-          popupMigration.content = 
-            "IRS21"
-      } else if (popupLabel == "IRSNet20"|"IRSIn20"|"IRSOut20"){
-          popupMigration.content = 
-            "IRS20"
-      } else if (popupLabel == "IRSNet19"|"IRSIn19"|"IRSOut19"){
-        popupMigration.content = 
-            "IRS19"
-      }
-    });
+    /* popupSelect = document.getElementById("field-select");
+    popupSelect.addEventListener("change", (event) => {refresh(layer);
+      const popupLabel = popupSelect.options[popupSelect.selectedIndex].value;
 
-    function generatePopup() { 
-      const popupLabel = popupSelect.options[popupSelect.selectedIndex].text;
-      switch (popupLabel){
-        case "CenNet21":
-          case "CenIn21":
-            case "CenOut21":  
-            
+      if (popupLabel == "ACSNet21"||popupLabel == "ACSFr21"||popupLabel == "ACSTo21"){
+        popupMigration.content = "ACS21";
+      } else if (popupLabel == "ACSNet19"||popupLabel == "ACSFr19"||popupLabel == "ACSTo19"){
+          popupMigration.content = "ACS19"
+      } else if (popupLabel == "IndNet21"||popupLabel == "IndFr21"||popupLabel == "IndTo21"){
+          popupMigration.content = "IRS21"
+      } else if (popupLabel == "IndNet20"||popupLabel == "IndFr20"||popupLabel == "IndTo20"){
+          popupMigration.content = "IRS20"
+      } else if (popupLabel == "IndNet19"||popupLabel == "IndFr19"||popupLabel == "IndTo19"){
+        popupMigration.content = "IRS19"
+      } else if (popupLabel == "RetNet21"||popupLabel == "RetFr21"||popupLabel == "RetTo21"){
+        popupMigration.content = "IRS21"
+      } else if (popupLabel == "RetNet20"||popupLabel == "RetFr20"||popupLabel == "RetTo20"){
+          popupMigration.content = "IRS20"
+      } else if (popupLabel == "RetNet19"||popupLabel == "RetFr19"||popupLabel == "RetTo19"){
+        popupMigration.content = "IRS19"
+      } else if (popupLabel == "AIGNet21"||popupLabel == "AIGFr21"||popupLabel == "AIGTo21"){
+        popupMigration.content = "IRS21"
+      } else if (popupLabel == "AIGNet20"||popupLabel == "AIGFr20"||popupLabel == "AIGTo20"){
+          popupMigration.content = "IRS20"
+      } else if (popupLabel == "AIGNet19"||popupLabel == "AIGFr19"||popupLabel == "AIGTo19"){
+        popupMigration.content = "IRS19"
       }
-    }
+      
+    }); */
     
     var popupMigration = {
-        title: "{NAME} Migration to and from Colorado",
-        content: popupContent
+        title: "<b>2021 ACS Migration between Colorado and {NAME}</b>",
+        content: "default" //popupContent
             /*"<b>All Industries:</b>  {TotalA} Jobs, {Total}%<br>"+
             "<b> Goods-Producting:</b>  {GoodsA} Jobs, {Goods}%<br>"+
             "<b>  Natural Resources & Mining:</b>  {NatResA} Jobs, {NatRes}%<br>"+
@@ -91,7 +88,9 @@ require([
           family: "Playfair Display",
           size: 8,
           weight: "bold"
-        }
+        },
+        haloColor: [255, 255, 255, 255],
+        haloSize: 1
       },
       labelPlacement: "above-center",
       labelExpressionInfo: {
@@ -123,8 +122,8 @@ require([
     var view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [-105.8, 39.202], // longitude, latitude
-      zoom: 6
+      center: [-97.55, 39.711], // longitude, latitude
+      zoom: 3
     });
     
     //view.ui.move("zoom", "bottom-right");
@@ -204,17 +203,47 @@ require([
         function generateRenderer() { 
           const fieldLabel =
             fieldSelect.options[fieldSelect.selectedIndex].text;
+            // custom popup depending on migration flow
+            console.log(fieldSelect.value);
+            if (fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSTo21"){console.log("ACS");
+              layer.popupTemplate.title = "<b>2021 ACS Migration between Colorado and {NAME}</b>";
+              layer.popupTemplate.content = 
+              "{ACSNet21} Net Migrants<br>"+
+              "{ACSFr21} Migrants to Colorado<br>"+
+              "{ACSTo21} Migrants from Colorado";
+            } else if (fieldSelect.value == "ACSNet19"||fieldSelect.value == "ACSFr19"||fieldSelect.value == "ACSTo19"){console.log("ACS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "IndNet21"||fieldSelect.value == "IndFr21"||fieldSelect.value == "IndTo21"){console.log("IRS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "IndNet20"||fieldSelect.value == "IndFr20"||fieldSelect.value == "IndTo20"){console.log("IRS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "IndNet19"||fieldSelect.value == "IndFr19"||fieldSelect.value == "IndTo19"){console.log("IRS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "RetNet21"||fieldSelect.value == "RetFr21"||fieldSelect.value == "RetTo21"){console.log("IRS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "RetNet20"||fieldSelect.value == "RetFr20"||fieldSelect.value == "RetTo20"){console.log("IRS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "RetNet19"||fieldSelect.value == "RetFr19"||fieldSelect.value == "RetTo19"){console.log("IRS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "IncNet21"||fieldSelect.value == "IncFr21"||fieldSelect.value == "IncTo21"){console.log("IRS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "IncNet20"||fieldSelect.value == "IncFr20"||fieldSelect.value == "IncTo20"){console.log("IRS");
+              layer.popupTemplate.content = "ACS21";
+            } else if (fieldSelect.value == "IncNet19"||fieldSelect.value == "IncFr19"||fieldSelect.value == "IncTo19"){console.log("IRS");
+              layer.popupTemplate.content = "ACS19";
+            }
+            
           // default to natural-breaks when manual is selected for classification method
           const classificationMethod =
             classSelect.value === "manual"
               ? "natural-breaks"
               : classSelect.value;
-          var blsrenderer = {
+          var fixedrenderer = {
               type: "class-breaks", // autocasts as new ClassBreaksRenderer()
               field: fieldSelect.value,
-              numClasses: 11,
+              numClasses: 7,
               legendOptions: {
-                  title: "% Job Change "// + fieldLabel
+                  title: fieldLabel
                 },
               defaultSymbol: {
                 type: "simple-fill", // autocasts as new SimpleFillSymbol()
@@ -226,166 +255,11 @@ require([
                 }
               },
               defaultLabel: "NA",
-              classBreakInfos: [
-                /*{
-                  minValue: -100,
-                  maxValue: -8.0001,
-                  symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: "#67001f",
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "< -8%" // label for symbol in legend
-                  }
-                },*/
-                {
-                  minValue: -200,
-                  maxValue: -6.0001,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: [255,0,0],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "35 - 50%" // label for symbol in legend
-                   }
-                },
-                {
-                  minValue: -6,
-                  maxValue: -4.0001,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: [255,63,63],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "50 - 75%" // label for symbol in legend
-                   }
-                },
-                {
-                  minValue: -4,
-                  maxValue: -2.0001,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: [255,127,127],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "> 75%" // label for symbol in legend
-                   }
-                },
-                {
-                  minValue: -2,
-                  maxValue: 0.0001,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: [255,191,191],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "> 75%" // label for symbol in legend
-                   }
-                },
-                {
-                  minValue: 0,
-                  maxValue: 0,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: [255,255,255],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "> 75%" // label for symbol in legend
-                   }
-                },
-                {
-                  minValue: .0001,
-                  maxValue: 2,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: [191,191,255],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "> 75%" // label for symbol in legend
-                   }
-                },
-                {
-                  minValue: 2.0001,
-                  maxValue: 4,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: [127,127,255],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "> 75%" // label for symbol in legend
-                   }
-                },
-                {
-                  minValue: 4.0001,
-                  maxValue: 6,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: [63,63,255],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "> 75%" // label for symbol in legend
-                   }
-                },
-                {
-                  minValue: 6.0001,
-                  maxValue: 200,
-                   symbol: {
-                     type: "simple-fill",
-                      style: "solid",
-                      color: [0,0,255],
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "> 75%" // label for symbol in legend
-                   }
-                }/*,
-                {
-                  minValue: 8.0001,
-                  maxValue: 100,
-                   symbol: {
-                      type: "simple-fill",
-                      style: "solid",
-                      color: "#053061",
-                      outline: {
-                        color: [50, 50, 50, 0.6],
-                        width: 0.4
-                      },
-                  label: "> 75%" // label for symbol in legend
-                   }
-                }*/
-              ]
+              classBreakInfos: netClasses
             };
 
-          if (classSelect.value === "bls") {
-           layer.renderer = blsrenderer;
+          if (classSelect.value === "fixed") {
+           layer.renderer = fixedrenderer;
             map.add(layer);
           } else {   
               const params = {
@@ -395,11 +269,11 @@ require([
                 classificationMethod: classificationMethod,
                 numClasses: parseInt(numClassesInput.value),
                 legendOptions: {
-                  title: "% Job Change "// + fieldLabel
+                  title: fieldLabel
                 },
                 colorScheme: {
                   id: "above-and-below/gray/div-blue-red",
-                  colors: [[255,0,0],[255,127,127],[255,255,255],[127,127,255],[0,0,255]],
+                  colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[170,170,255],[85,85,255],[0,0,255]],
                   noDataColor: [0,0,0],
                   colorsForClassBreaks: [
                     {
@@ -524,7 +398,104 @@ require([
         }
 
 
-
+       netClasses = {
+          minValue: -1001,
+          maxValue: -200000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [255,0,0],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              },
+          label: "> 1,000" // label for symbol in legend
+           }
+        },
+        {
+          minValue: -1000,
+          maxValue: -101,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [255,63,63],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              },
+          label: "-101 to 1,000" // label for symbol in legend
+           }
+        },
+        {
+          minValue: -100,
+          maxValue: -1,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [255,127,127],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              },
+          label: "-1 to -100" // label for symbol in legend
+           }
+        },
+        {
+          minValue: 0,
+          maxValue: 0,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [255,255,255],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              },
+          label: "0" // label for symbol in legend
+           }
+        },
+        {
+          minValue: 1,
+          maxValue: 100,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [127,127,255],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              },
+          label: "1 to 100" // label for symbol in legend
+           }
+        },
+        {
+          minValue: 101,
+          maxValue: 1000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [63,63,255],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              },
+          label: "101 to 1,000" // label for symbol in legend
+           }
+        },
+        {
+          minValue: 1001,
+          maxValue: 200000,
+           symbol: {
+             type: "simple-fill",
+              style: "solid",
+              color: [0,0,255],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              },
+          label: "> 1,000" // label for symbol in legend
+           }
+        }
 
     
      
