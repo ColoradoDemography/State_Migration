@@ -62,7 +62,9 @@ require([
     
     var popupMigration = {
         title: "<b>2021 ACS Migration between Colorado and {NAME}</b>",
-        content: "default" //popupContent
+        content: "{ACSNet21} Net Migrants<br>"+
+        "{ACSFr21} Migrants to Colorado<br>"+
+        "{ACSTo21} Migrants from Colorado"; //popupContent
             /*"<b>All Industries:</b>  {TotalA} Jobs, {Total}%<br>"+
             "<b> Goods-Producting:</b>  {GoodsA} Jobs, {Goods}%<br>"+
             "<b>  Natural Resources & Mining:</b>  {NatResA} Jobs, {NatRes}%<br>"+
@@ -212,25 +214,55 @@ require([
               "{ACSFr21} Migrants to Colorado<br>"+
               "{ACSTo21} Migrants from Colorado";
             } else if (fieldSelect.value == "ACSNet19"||fieldSelect.value == "ACSFr19"||fieldSelect.value == "ACSTo19"){console.log("ACS");
-              layer.popupTemplate.content = "ACS21";
+              layer.popupTemplate.title = "<b>2019 ACS Migration between Colorado and {NAME}</b>";  
+              layer.popupTemplate.content = "{ACSNet19} Net Migrants<br>"+
+              "{ACSFr19} Migrants to Colorado<br>"+
+              "{ACSTo19} Migrants from Colorado";
             } else if (fieldSelect.value == "IndNet21"||fieldSelect.value == "IndFr21"||fieldSelect.value == "IndTo21"){console.log("IRS");
-              layer.popupTemplate.content = "ACS21";
+            layer.popupTemplate.title = "<b>2021 IRS Individual Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.content = "{IndNet21} Net Migrants<br>"+
+              "{IndFr21} Migrants to Colorado<br>"+
+              "{IndTo21} Migrants from Colorado";
             } else if (fieldSelect.value == "IndNet20"||fieldSelect.value == "IndFr20"||fieldSelect.value == "IndTo20"){console.log("IRS");
-              layer.popupTemplate.content = "ACS21";
+            layer.popupTemplate.title = "<b>2020 Individual IRS Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.content = "{IndNet20} Net Migrants<br>"+
+              "{IndFr20} Migrants to Colorado<br>"+
+              "{IndTo20} Migrants from Colorado";
             } else if (fieldSelect.value == "IndNet19"||fieldSelect.value == "IndFr19"||fieldSelect.value == "IndTo19"){console.log("IRS");
-              layer.popupTemplate.content = "ACS21";
+            layer.popupTemplate.title = "<b>2019 IRS Individual Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.content = "{IndNet19} Net Migrants<br>"+
+              "{IndFr19} Migrants to Colorado<br>"+
+              "{IndTo19} Migrants from Colorado";
             } else if (fieldSelect.value == "RetNet21"||fieldSelect.value == "RetFr21"||fieldSelect.value == "RetTo21"){console.log("IRS");
-              layer.popupTemplate.content = "ACS21";
+            layer.popupTemplate.title = "<b>2021 IRS Household Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.content = "{RetNet21} Net Households<br>"+
+              "{RetFr21} Households to Colorado<br>"+
+              "{RetTo21} Households from Colorado";
             } else if (fieldSelect.value == "RetNet20"||fieldSelect.value == "RetFr20"||fieldSelect.value == "RetTo20"){console.log("IRS");
-              layer.popupTemplate.content = "ACS21";
+            layer.popupTemplate.title = "<b>2020 IRS Household Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.content = "{RetNet20} Net Households<br>"+
+              "{RetFr20} Households to Colorado<br>"+
+              "{RetTo20} Households from Colorado";
             } else if (fieldSelect.value == "RetNet19"||fieldSelect.value == "RetFr19"||fieldSelect.value == "RetTo19"){console.log("IRS");
-              layer.popupTemplate.content = "ACS21";
+            layer.popupTemplate.title = "<b>2019 IRS Household Migration between Colorado and {NAME}</b>"; 
+            layer.popupTemplate.content = "{RetNet19} Net Households<br>"+
+              "{RetFr19} Households to Colorado<br>"+
+              "{RetTo19} Households from Colorado";
             } else if (fieldSelect.value == "IncNet21"||fieldSelect.value == "IncFr21"||fieldSelect.value == "IncTo21"){console.log("IRS");
-              layer.popupTemplate.content = "ACS21";
+            layer.popupTemplate.title = "<b>2021 IRS Adjusted Gross Income Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.content = "{IncNet21} Net Income<br>"+
+              "{IncFr21} Income to Colorado<br>"+
+              "{IncTo21} Income from Colorado";
             } else if (fieldSelect.value == "IncNet20"||fieldSelect.value == "IncFr20"||fieldSelect.value == "IncTo20"){console.log("IRS");
-              layer.popupTemplate.content = "ACS21";
+            "<b>2020 IRS Adjusted Gross Income Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.content = "{IncNet20} Net Income<br>"+
+              "{IncFr20} Income to Colorado<br>"+
+              "{IncTo20} Income from Colorado";
             } else if (fieldSelect.value == "IncNet19"||fieldSelect.value == "IncFr19"||fieldSelect.value == "IncTo19"){console.log("IRS");
-              layer.popupTemplate.content = "ACS19";
+            "<b>2019 IRS Adjusted Gross Income Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.content = "{IncNet19} Net Income<br>"+
+              "{IncFr19} Income to Colorado<br>"+
+              "{IncTo19} Income from Colorado";
             }
             
           // default to natural-breaks when manual is selected for classification method
