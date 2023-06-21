@@ -112,15 +112,16 @@ require([
             new VectorTileLayer({
                 portalItem: {
                     id: "3137a21172d841d0b9cb1383a407662c"
-                }
+                },
+                opacity: .0
             })
         ]
     })
     
     var map = new Map({
-      basemap: basemap
+      basemap:basemap
     });
-basemap.hide();
+
     var view = new MapView({
       container: "viewDiv",
       map: map,
