@@ -204,8 +204,12 @@ require([
         }
 
         function generateRenderer() { 
-          const fieldLabel = fieldSelect.options[fieldSelect.selectedIndex].text;
-
+          let fieldLabel = fieldSelect.options[fieldSelect.selectedIndex].text;
+          if (fieldSelect.value == "AIGNet21"||fieldSelect.value == "AIGFr21"||fieldSelect.value == "AIGTo21"||
+          fieldSelect.value == "AIGNet20"||fieldSelect.value == "AIGFr20"||fieldSelect.value == "AIGTo20"||
+          fieldSelect.value == "AIGNet19"||fieldSelect.value == "AIGFr19"||fieldSelect.value == "AIGTo19"){
+            fieldLabel = fieldLabel + " (in thousands of dollars)";
+          }
           // custom popup depending on migration flow
           console.log(fieldSelect.value);
           if (fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSTo21"){console.log("ACS");
@@ -250,17 +254,17 @@ require([
             "{RetFr19} Households to Colorado<br>"+
             "{RetTo19} Households from Colorado";
           } else if (fieldSelect.value == "AIGNet21"||fieldSelect.value == "AIGFr21"||fieldSelect.value == "AIGTo21"){console.log("IRS");
-          layer.popupTemplate.title = "<b>2021 IRS Adjusted Gross Income Migration between Colorado and {NAME}</b>";  
+          layer.popupTemplate.title = "<b>2021 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>in thousands of dollars</b>";  
           layer.popupTemplate.content = "{AIGNet21} Net Income<br>"+
             "{AIGFr21} Income to Colorado<br>"+
             "{AIGTo21} Income from Colorado";
           } else if (fieldSelect.value == "AIGNet20"||fieldSelect.value == "AIGFr20"||fieldSelect.value == "AIGTo20"){console.log("IRS");
-          layer.popupTemplate.title = "<b>2020 IRS Adjusted Gross Income Migration between Colorado and {NAME}</b>";  
+          layer.popupTemplate.title = "<b>2020 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>in thousands of dollars</b>";  
           layer.popupTemplate.content = "{AIGNet20} Net Income<br>"+
             "{AIGFr20} Income to Colorado<br>"+
             "{AIGTo20} Income from Colorado";
           } else if (fieldSelect.value == "AIGNet19"||fieldSelect.value == "AIGFr19"||fieldSelect.value == "AIGTo19"){console.log("IRS");
-          layer.popupTemplate.title = "<b>2019 IRS Adjusted Gross Income Migration between Colorado and {NAME}</b>";  
+          layer.popupTemplate.title = "<b>2019 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>in thousands of dollars</b>";  
           layer.popupTemplate.content = "{AIGNet19} Net Income<br>"+
             "{AIGFr19} Income to Colorado<br>"+
             "{AIGTo19} Income from Colorado";
@@ -457,16 +461,16 @@ require([
         netClasses = [{
           minValue: -200000,
           maxValue: -1001,
-           symbol: {
-              type: "simple-fill",
-              style: "solid",
-              color: [140,81,10],
-              outline: {
-                color: [50, 50, 50, 0.6],
-                width: 0.4
-              },
+          symbol: {
+            type: "simple-fill",
+            style: "solid",
+            color: [140,81,10],
+            outline: {
+              color: [50, 50, 50, 0.6],
+              width: 0.4
+            }
+          },
           label: "> 1,000" // label for symbol in legend
-           }
         },
         {
           minValue: -1000,
@@ -478,9 +482,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "-101 to 1,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "-101 to 1,000" // label for symbol in legend       
         },
         {
           minValue: -500,
@@ -492,9 +496,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "-1 to -100" // label for symbol in legend
-           }
         },
         {
           minValue: 0,
@@ -506,9 +510,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "0" // label for symbol in legend
-           }
         },
         {
           minValue: 1,
@@ -520,9 +524,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "1 to 100" // label for symbol in legend
-           }
         },
         {
           minValue: 501,
@@ -534,9 +538,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "101 to 1,000" // label for symbol in legend
-           }
         },
         {
           minValue: 1001,
@@ -548,9 +552,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "> 1,000" // label for symbol in legend
-           }
         }]
 
         //symbology for net AIG
@@ -564,9 +568,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "> 1,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "> $1,000" // label for symbol in legend
         },
         {
           minValue: -50000,
@@ -578,9 +582,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "-101 to 1,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "-$101 to $1,000" // label for symbol in legend
         },
         {
           minValue: -20000,
@@ -592,9 +596,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "-1 to -100" // label for symbol in legend
-           }
+              }
+            },
+          label: "-$1 to -$100" // label for symbol in legend
         },
         {
           minValue: 0,
@@ -606,9 +610,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "0" // label for symbol in legend
-           }
+              }
+            },
+          label: "$0" // label for symbol in legend
         },
         {
           minValue: 1,
@@ -620,9 +624,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "1 to 100" // label for symbol in legend
-           }
+              }
+            },
+          label: "$1 to $100" // label for symbol in legend
         },
         {
           minValue: 20001,
@@ -634,9 +638,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "101 to 1,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "$101 to $1,000" // label for symbol in legend
         },
         {
           minValue: 50001,
@@ -648,9 +652,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "> 1,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "> $1,000" // label for symbol in legend
         }]
 
         //symbology for out and in migration
@@ -664,9 +668,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "0" // label for symbol in legend
-           }
         },
         {
           minValue: 1,
@@ -678,9 +682,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "1 to 200" // label for symbol in legend
-           }
         },
         {
           minValue: 201,
@@ -692,9 +696,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "201 to 500" // label for symbol in legend
-           }
         },
         {
           minValue: 501,
@@ -706,9 +710,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "501 to 1,000" // label for symbol in legend
-           }
         },
         {
           minValue: 1001,
@@ -720,9 +724,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "1,001 to 5,000" // label for symbol in legend
-           }
         },
         {
           minValue: 5001,
@@ -734,9 +738,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "5,001 to 10,000" // label for symbol in legend
-           }
         },
         {
           minValue: 10001,
@@ -748,9 +752,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
+              }
+            },
           label: "> 10,000" // label for symbol in legend
-           }
         }]
 
         //symbology for out and in AIG
@@ -764,9 +768,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "0" // label for symbol in legend
-           }
+              }
+            },
+          label: "$0" // label for symbol in legend
         },
         {
           minValue: 1,
@@ -778,9 +782,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "1 to 20,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "$1 to $20,000" // label for symbol in legend
         },
         {
           minValue: 20001,
@@ -792,9 +796,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "20,001 to 50,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "$20,001 to $50,000" // label for symbol in legend
         },
         {
           minValue: 50001,
@@ -806,9 +810,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "50,001 to 100,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "$50,001 to $100,000" // label for symbol in legend
         },
         {
           minValue: 100001,
@@ -820,9 +824,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "100,001 to 200,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "$100,001 to $200,000" // label for symbol in legend
         },
         {
           minValue: 200001,
@@ -834,9 +838,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "200,001 to 500,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "$200,001 to $500,000" // label for symbol in legend
         },
         {
           minValue: 500001,
@@ -848,9 +852,9 @@ require([
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
-              },
-          label: "> 500,000" // label for symbol in legend
-           }
+              }
+            },
+          label: "> $500,000" // label for symbol in legend
         }]
      
     
