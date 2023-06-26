@@ -220,7 +220,7 @@ require([
       zoom: 3
     });
     
-    //view.ui.move("zoom", "bottom-right");
+    view.ui.move("zoom", "bottom-left");
     
     var legend = new Legend({
         view: view
