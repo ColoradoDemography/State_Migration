@@ -29,56 +29,147 @@ require([
       ) {
     
     let fieldSelect, classSelect, numClassesInput, slider;
-    
-    /* popupSelect = document.getElementById("field-select");
-    popupSelect.addEventListener("change", (event) => {refresh(layer);
-      const popupLabel = popupSelect.options[popupSelect.selectedIndex].value;
 
-      if (popupLabel == "ACSNet21"||popupLabel == "ACSFr21"||popupLabel == "ACSTo21"){
-        popupMigration.content = "ACS21";
-      } else if (popupLabel == "ACSNet19"||popupLabel == "ACSFr19"||popupLabel == "ACSTo19"){
-          popupMigration.content = "ACS19"
-      } else if (popupLabel == "IndNet21"||popupLabel == "IndFr21"||popupLabel == "IndTo21"){
-          popupMigration.content = "IRS21"
-      } else if (popupLabel == "IndNet20"||popupLabel == "IndFr20"||popupLabel == "IndTo20"){
-          popupMigration.content = "IRS20"
-      } else if (popupLabel == "IndNet19"||popupLabel == "IndFr19"||popupLabel == "IndTo19"){
-        popupMigration.content = "IRS19"
-      } else if (popupLabel == "RetNet21"||popupLabel == "RetFr21"||popupLabel == "RetTo21"){
-        popupMigration.content = "IRS21"
-      } else if (popupLabel == "RetNet20"||popupLabel == "RetFr20"||popupLabel == "RetTo20"){
-          popupMigration.content = "IRS20"
-      } else if (popupLabel == "RetNet19"||popupLabel == "RetFr19"||popupLabel == "RetTo19"){
-        popupMigration.content = "IRS19"
-      } else if (popupLabel == "AIGNet21"||popupLabel == "AIGFr21"||popupLabel == "AIGTo21"){
-        popupMigration.content = "IRS21"
-      } else if (popupLabel == "AIGNet20"||popupLabel == "AIGFr20"||popupLabel == "AIGTo20"){
-          popupMigration.content = "IRS20"
-      } else if (popupLabel == "AIGNet19"||popupLabel == "AIGFr19"||popupLabel == "AIGTo19"){
-        popupMigration.content = "IRS19"
-      }
-      
-    }); */
-    
     var popupMigration = {
         title: "<b>2021 ACS Migration between Colorado and {NAME}</b>",
         content: "{ACSNet21} Net Migrants<br>"+
-        "{ACSFr21} Migrants to Colorado<br>"+
-        "{ACSTo21} Migrants from Colorado" //popupContent
-            /*"<b>All Industries:</b>  {TotalA} Jobs, {Total}%<br>"+
-            "<b> Goods-Producting:</b>  {GoodsA} Jobs, {Goods}%<br>"+
-            "<b>  Natural Resources & Mining:</b>  {NatResA} Jobs, {NatRes}%<br>"+
-            "<b>  Construction:</b>  {ConstA} Jobs, {Const}%<br>"+
-            "<b>  Manufacturing:</b>  {ManufA} Jobs, {Manuf}%<br>"+
-            "<b> Service-Providing</b>  {ServiceA} Jobs, {Service}%<br>"+
-            "<b>  Trade, Transportation & Utilities:</b>  {TradeA} Jobs, {Trade}%<br>"+
-            "<b>  Information:</b>  {InformA} Jobs, {Inform}%<br>"+
-            "<b>  Financial Activities:</b>  {FinanceA} Jobs, {Finance}%<br>"+
-            "<b>  Professional & Business Services:</b>  {ProfA} Jobs, {Prof}%<br>"+
-            "<b>  Education & Health:</b>  {EducationA} Jobs, {Education}%<br>"+
-            "<b>  Leisure & Hospitality:</b>  {LeisureA} Jobs, {Leisure}%<br>"+
-            "<b>  Other Services:</b>  {OtherServA} Jobs, {OtherServ}%<br>"+
-            "<b> Unclassified:</b>  {Unclass}%<br>"*/
+          "{ACSFr21} Migrants to Colorado<br>"+
+          "{ACSTo21} Migrants from Colorado",
+          
+        fieldInfos: [
+          {
+            fieldName: "ACSNet21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "ACSFr21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "ACSTo21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "ACSNet19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "ACSFr19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "ACSTo19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "IndNet21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "IndFr21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "IndTo21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "IndNet20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "IndFr20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "IndTo20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "IndNet19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "IndFr19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "IndTo19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "RetNet21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "RetFr21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "RetTo21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "RetNet20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "RetFr20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "RetTo20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "RetNet19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "RetFr19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "RetTo19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "AIGNet21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "AIGFr21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "AIGTo21",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "AIGNet20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "AIGFr20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "AIGTo20",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "AIGNet19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "AIGFr19",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "AIGTo19",
+            format: {digitSeparator: true, places: 0}
+          },
+        ]
     };
         
     const labelClass = {
@@ -113,7 +204,7 @@ require([
                 portalItem: {
                     id: "3137a21172d841d0b9cb1383a407662c"
                 },
-                opacity: .0
+                opacity: .1
             })
         ]
     })
@@ -125,7 +216,7 @@ require([
     var view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [-97.55, 39.711], // longitude, latitude
+      center: [-97.55, 37], // longitude, latitude
       zoom: 3
     });
     
@@ -149,15 +240,14 @@ require([
           "https://dola-online.maps.arcgis.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
       });
     
-    var expand2 = new Expand({
+     /* var expand2 = new Expand({
         view: view,
         content: print,
         expandIconClass: "esri-icon-printer",
         expandTooltip: "Print"
-    })
+    }) 
     
-    view.ui.add([expand2], "bottom-right");
-   // view.ui.add([expand2], "bottom-right");
+    view.ui.add([expand2], "bottom-right"); */
     
     /*view.ui.add(
           new Legend({
@@ -254,20 +344,20 @@ require([
             "{RetFr19} Households to Colorado<br>"+
             "{RetTo19} Households from Colorado";
           } else if (fieldSelect.value == "AIGNet21"||fieldSelect.value == "AIGFr21"||fieldSelect.value == "AIGTo21"){console.log("IRS");
-          layer.popupTemplate.title = "<b>2021 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>in thousands of dollars</b>";  
-          layer.popupTemplate.content = "{AIGNet21} Net Income<br>"+
-            "{AIGFr21} Income to Colorado<br>"+
-            "{AIGTo21} Income from Colorado";
+          layer.popupTemplate.title = "<b>2021 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>(in thousands of dollars)</b>";  
+          layer.popupTemplate.content = "${AIGNet21} Net Income<br>"+
+            "${AIGFr21} Income to Colorado<br>"+
+            "${AIGTo21} Income from Colorado";
           } else if (fieldSelect.value == "AIGNet20"||fieldSelect.value == "AIGFr20"||fieldSelect.value == "AIGTo20"){console.log("IRS");
-          layer.popupTemplate.title = "<b>2020 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>in thousands of dollars</b>";  
-          layer.popupTemplate.content = "{AIGNet20} Net Income<br>"+
-            "{AIGFr20} Income to Colorado<br>"+
-            "{AIGTo20} Income from Colorado";
+          layer.popupTemplate.title = "<b>2020 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>(in thousands of dollars)</b>";  
+          layer.popupTemplate.content = "${AIGNet20} Net Income<br>"+
+            "${AIGFr20} Income to Colorado<br>"+
+            "${AIGTo20} Income from Colorado";
           } else if (fieldSelect.value == "AIGNet19"||fieldSelect.value == "AIGFr19"||fieldSelect.value == "AIGTo19"){console.log("IRS");
-          layer.popupTemplate.title = "<b>2019 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>in thousands of dollars</b>";  
-          layer.popupTemplate.content = "{AIGNet19} Net Income<br>"+
-            "{AIGFr19} Income to Colorado<br>"+
-            "{AIGTo19} Income from Colorado";
+          layer.popupTemplate.title = "<b>2019 IRS Adjusted Gross Income Migration between Colorado and {NAME}<br>(in thousands of dollars)</b>";  
+          layer.popupTemplate.content = "${AIGNet19} Net Income<br>"+
+            "${AIGFr19} Income to Colorado<br>"+
+            "${AIGTo19} Income from Colorado";
           }
 
           //determine proper color ramp depending on migration stat
@@ -304,16 +394,6 @@ require([
               legendOptions: {
                   title: fieldLabel
                 },
-              defaultSymbol: {
-                type: "simple-fill", // autocasts as new SimpleFillSymbol()
-                color: "black",
-                style: "backward-diagonal",
-                outline: {
-                  width: 0.5,
-                  color: [50, 50, 50, 0.6]
-                }
-              },
-              defaultLabel: "NA",
               classBreakInfos: cRamp
             };
 
