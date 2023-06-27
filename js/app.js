@@ -303,13 +303,13 @@ require([
           // custom popup depending on migration flow
           console.log(fieldSelect.value);
           if (fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSTo21"){console.log("ACS");
-            layer.popupTemplate.title = "<b>2021 ACS Migration between Colorado and {NAME}</b>";
+            layer.popupTemplate.title = "<b>2021 Census ACS Migration between Colorado and {NAME}</b>";
             layer.popupTemplate.content = 
             "{ACSNet21} Net Migrants<br>"+
             "{ACSFr21} Migrants to Colorado<br>"+
             "{ACSTo21} Migrants from Colorado";
           } else if (fieldSelect.value == "ACSNet19"||fieldSelect.value == "ACSFr19"||fieldSelect.value == "ACSTo19"){console.log("ACS");
-            layer.popupTemplate.title = "<b>2019 ACS Migration between Colorado and {NAME}</b>";  
+            layer.popupTemplate.title = "<b>2019 Census ACS Migration between Colorado and {NAME}</b>";  
             layer.popupTemplate.content = "{ACSNet19} Net Migrants<br>"+
             "{ACSFr19} Migrants to Colorado<br>"+
             "{ACSTo19} Migrants from Colorado";
@@ -550,7 +550,7 @@ require([
               width: 0.4
             }
           },
-          label: "> 1,000" // label for symbol in legend
+          label: "< -1,000" // label for symbol in legend
         },
         {
           minValue: -1000,
@@ -564,7 +564,7 @@ require([
                 width: 0.4
               }
             },
-          label: "-101 to 1,000" // label for symbol in legend       
+          label: "-501 to -1,000" // label for symbol in legend       
         },
         {
           minValue: -500,
@@ -578,7 +578,7 @@ require([
                 width: 0.4
               }
             },
-          label: "-1 to -100" // label for symbol in legend
+          label: "-1 to -500" // label for symbol in legend
         },
         {
           minValue: 0,
@@ -606,7 +606,7 @@ require([
                 width: 0.4
               }
             },
-          label: "1 to 100" // label for symbol in legend
+          label: "1 to 500" // label for symbol in legend
         },
         {
           minValue: 501,
@@ -620,7 +620,7 @@ require([
                 width: 0.4
               }
             },
-          label: "101 to 1,000" // label for symbol in legend
+          label: "501 to 1,000" // label for symbol in legend
         },
         {
           minValue: 1001,
@@ -650,7 +650,7 @@ require([
                 width: 0.4
               }
             },
-          label: "> $1,000" // label for symbol in legend
+          label: "< -$50,000" // label for symbol in legend
         },
         {
           minValue: -50000,
@@ -664,7 +664,7 @@ require([
                 width: 0.4
               }
             },
-          label: "-$101 to $1,000" // label for symbol in legend
+          label: "-$20001 to -$50,000" // label for symbol in legend
         },
         {
           minValue: -20000,
@@ -678,7 +678,7 @@ require([
                 width: 0.4
               }
             },
-          label: "-$1 to -$100" // label for symbol in legend
+          label: "-$1 to -$20000" // label for symbol in legend
         },
         {
           minValue: 0,
@@ -706,7 +706,7 @@ require([
                 width: 0.4
               }
             },
-          label: "$1 to $100" // label for symbol in legend
+          label: "$1 to $20000" // label for symbol in legend
         },
         {
           minValue: 20001,
@@ -720,7 +720,7 @@ require([
                 width: 0.4
               }
             },
-          label: "$101 to $1,000" // label for symbol in legend
+          label: "$20001 to $50,000" // label for symbol in legend
         },
         {
           minValue: 50001,
@@ -734,7 +734,7 @@ require([
                 width: 0.4
               }
             },
-          label: "> $1,000" // label for symbol in legend
+          label: "> $50,000" // label for symbol in legend
         }]
 
         //symbology for out and in migration
