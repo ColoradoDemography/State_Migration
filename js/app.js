@@ -434,7 +434,7 @@ require([
                       colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[127,127,255],[0,0,255]],
                       numClasses: 6
                     }, {
-                      colors: [[178,24,43],[239,138,98],[253,219,199],[247,247,247],[209,229,240],[103,169,207],[33,102,172]],
+                      colors: [[33,102,172],[103,169,207],[209,229,240],[247,247,247],[253,219,199],[239,138,98],[178,24,43]],
                       //colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[170,170,255],[85,85,255],[0,0,255]],
                       //colors: [[140,81,10],[216,179,101],[246,232,195],[255,255,255],[199,234,229],[90,180,172],[1,102,94]],
                       numClasses: 7
@@ -545,7 +545,7 @@ require([
           symbol: {
             type: "simple-fill",
             style: "solid",
-            color: [178,24,43],
+            color: [33,102,172],
             outline: {
               color: [50, 50, 50, 0.6],
               width: 0.4
@@ -559,7 +559,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [239,138,98],
+              color: [103,169,207],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -573,7 +573,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [253,219,199],
+              color: [209,229,240],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -601,7 +601,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [209,229,240],
+              color: [253,219,199],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -615,7 +615,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [103,169,207],
+              color: [239,138,98],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -629,7 +629,7 @@ require([
            symbol: {
              type: "simple-fill",
               style: "solid",
-              color: [33,102,172],
+              color: [178,24,43],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
