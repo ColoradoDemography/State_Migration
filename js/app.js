@@ -803,7 +803,7 @@ require([
               style: "solid",
               color: [239,59,44],
               outline: {
-                color: [50, 50, 50, 0.6],
+                color: [50, 50, 50, 0.6],       
                 width: 0.4
               }
             },
