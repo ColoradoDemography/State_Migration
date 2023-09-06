@@ -372,11 +372,11 @@ require([
           } else if (fieldSelect.value == "ACSTo21"||fieldSelect.value == "ACSTo19"||fieldSelect.value == "IndTo19"||
           fieldSelect.value == "IndTo20"||fieldSelect.value == "IndTo21"||fieldSelect.value == "RetTo21"||
           fieldSelect.value == "RetTo20"||fieldSelect.value == "RetTo19"){
-            var cRamp = frClasses; 
+            var cRamp = toClasses; 
           } else if (fieldSelect.value == "AIGFr21"||fieldSelect.value == "AIGFr20"||fieldSelect.value == "AIGFr19"){
             var cRamp = frAIGClasses;
           } else if (fieldSelect.value == "AIGTo21"||fieldSelect.value == "AIGTo20"||fieldSelect.value == "AIGTo19"){
-            var cRamp = frAIGClasses;
+            var cRamp = toAIGClasses;
           } else if (fieldSelect.value == "AIGNet19"||fieldSelect.value == "AIGNet20"||fieldSelect.value == "AIGNet21"){ 
             var cRamp = netAIGClasses;
           }
@@ -645,7 +645,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [140,81,10],
+              color: [33,102,172],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -659,7 +659,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [216,179,101],
+              color: [103,169,207],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -673,7 +673,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [246,232,195],
+              color: [209,229,240],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -687,7 +687,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [255,255,255],
+              color: [247,247,247],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -701,7 +701,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [199,234,229],
+              color: [253,219,199],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -715,7 +715,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [90,180,172],
+              color: [239,138,98],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -729,7 +729,7 @@ require([
            symbol: {
              type: "simple-fill",
               style: "solid",
-              color: [1,102,94],
+              color: [178,24,43],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -738,7 +738,7 @@ require([
           label: "> $50,000" // label for symbol in legend
         }]
 
-        //symbology for out and in migration
+        //symbology for in migration
         frClasses = [{
           minValue: 0,
           maxValue: 0,
@@ -759,7 +759,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [255,255,204],
+              color: [252,187,161],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -773,7 +773,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [199,233,180],
+              color: [252,146,114],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -787,7 +787,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [127,205,187],
+              color: [251,106,74],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -801,7 +801,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [65,182,196],
+              color: [239,59,44],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -815,7 +815,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [44,127,184],
+              color: [203,24,29],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -829,7 +829,7 @@ require([
            symbol: {
              type: "simple-fill",
               style: "solid",
-              color: [37,52,148],
+              color: [153,0,13],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -838,7 +838,107 @@ require([
           label: "> 10,000" // label for symbol in legend
         }]
 
-        //symbology for out and in AIG
+        //symbology for out migration
+        toClasses = [{
+          minValue: 0,
+          maxValue: 0,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [255,255,255],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "0" // label for symbol in legend
+        },
+        {
+          minValue: 1,
+          maxValue: 200,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [198,219,239],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "1 to 200" // label for symbol in legend
+        },
+        {
+          minValue: 201,
+          maxValue: 500,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [158,202,225],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "201 to 500" // label for symbol in legend
+        },
+        {
+          minValue: 501,
+          maxValue: 1000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [107,174,214],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "501 to 1,000" // label for symbol in legend
+        },
+        {
+          minValue: 1001,
+          maxValue: 5000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [66,146,198],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "1,001 to 5,000" // label for symbol in legend
+        },
+        {
+          minValue: 5001,
+          maxValue: 10000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [33,113,181],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "5,001 to 10,000" // label for symbol in legend
+        },
+        {
+          minValue: 10001,
+          maxValue: 100000,
+           symbol: {
+             type: "simple-fill",
+              style: "solid",
+              color: [8,69,148],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "> 10,000" // label for symbol in legend
+        }]
+
+        //symbology for in AIG
         frAIGClasses = [{
           minValue: 0,
           maxValue: 0,
@@ -859,7 +959,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [255,255,204],
+              color: [252,187,161],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -873,7 +973,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [199,233,180],
+              color: [252,146,114],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -887,7 +987,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [127,205,187],
+              color: [251,106,74],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -901,7 +1001,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [65,182,196],
+              color: [239,59,44],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -915,7 +1015,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [44,127,184],
+              color: [203,24,29],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -929,7 +1029,7 @@ require([
            symbol: {
              type: "simple-fill",
               style: "solid",
-              color: [37,52,148],
+              color: [153,0,13],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -938,7 +1038,105 @@ require([
           label: "> $500,000" // label for symbol in legend
         }]
      
-    
+        //AIG out
+        toAIGClasses = [{
+          minValue: 0,
+          maxValue: 0,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [255,255,255],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "$0" // label for symbol in legend
+        },
+        {
+          minValue: 1,
+          maxValue: 20000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [198,219,239],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "$1 to $20,000" // label for symbol in legend
+        },
+        {
+          minValue: 20001,
+          maxValue: 50000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [158,202,225],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "$20,001 to $50,000" // label for symbol in legend
+        },
+        {
+          minValue: 50001,
+          maxValue: 100000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [107,174,214],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "$50,001 to $100,000" // label for symbol in legend
+        },
+        {
+          minValue: 100001,
+          maxValue: 200000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [66,146,198],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "$100,001 to $200,000" // label for symbol in legend
+        },
+        {
+          minValue: 200001,
+          maxValue: 500000,
+           symbol: {
+              type: "simple-fill",
+              style: "solid",
+              color: [33,113,181],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "$200,001 to $500,000" // label for symbol in legend
+        },
+        {
+          minValue: 500001,
+          maxValue: 20000000,
+           symbol: {
+             type: "simple-fill",
+              style: "solid",
+              color: [8,69,148],
+              outline: {
+                color: [50, 50, 50, 0.6],
+                width: 0.4
+              }
+            },
+          label: "> $500,000" // label for symbol in legend
+        }]
     
 });
 
