@@ -372,11 +372,11 @@ require([
           } else if (fieldSelect.value == "ACSTo21"||fieldSelect.value == "ACSTo19"||fieldSelect.value == "IndTo19"||
           fieldSelect.value == "IndTo20"||fieldSelect.value == "IndTo21"||fieldSelect.value == "RetTo21"||
           fieldSelect.value == "RetTo20"||fieldSelect.value == "RetTo19"){
-            var cRamp = toClasses; 
+            var cRamp = frClasses; 
           } else if (fieldSelect.value == "AIGFr21"||fieldSelect.value == "AIGFr20"||fieldSelect.value == "AIGFr19"){
             var cRamp = frAIGClasses;
           } else if (fieldSelect.value == "AIGTo21"||fieldSelect.value == "AIGTo20"||fieldSelect.value == "AIGTo19"){
-            var cRamp = toAIGClasses;
+            var cRamp = frAIGClasses;
           } else if (fieldSelect.value == "AIGNet19"||fieldSelect.value == "AIGNet20"||fieldSelect.value == "AIGNet21"){ 
             var cRamp = netAIGClasses;
           }
@@ -400,7 +400,10 @@ require([
           if (classSelect.value === "fixed") {
            layer.renderer = fixedrenderer;
             map.add(layer);
-          } else {   
+          } else if (fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
+          fieldSelect.value == "IndNet21"||fieldSelect.value == "IndNet20"||fieldSelect.value == "IndNet19"||
+          fieldSelect.value == "RetNet21"||fieldSelect.value == "RetNet20"||fieldSelect.value == "RetNet19"||
+          fieldSelect.value == "AIGNet19"||fieldSelect.value == "AIGNet20"||fieldSelect.value == "AIGNet21"){   
               const params = {
                 layer: layer,
                 valueExpression: getValueExpression(fieldSelect.value),
@@ -416,40 +419,10 @@ require([
                   noDataColor: [0,0,0],
                   colorsForClassBreaks: [
                     {
-                      colors: [[255,0,0]],
-                      numClasses: 1
-                    }, {
-                      colors: [[255,0,0],[255,255,255]],
-                      numClasses: 2
-                    }, {
-                      colors: [[255,0,0],[255,255,255],[0,0,255]],
-                      numClasses: 3
-                    }, {
-                      colors: [[255,0,0],[170,0,85],[85,0,170],[0,0,255]],
-                      numClasses: 4
-                    }, {
-                      colors: [[255,0,0],[255,127,127],[255,255,255],[127,127,255],[0,0,255]],
-                      numClasses: 5
-                    }, {
-                      colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[127,127,255],[0,0,255]],
-                      numClasses: 6
-                    }, {
                       colors: [[33,102,172],[103,169,207],[209,229,240],[247,247,247],[253,219,199],[239,138,98],[178,24,43]],
                       //colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[170,170,255],[85,85,255],[0,0,255]],
                       //colors: [[140,81,10],[216,179,101],[246,232,195],[255,255,255],[199,234,229],[90,180,172],[1,102,94]],
                       numClasses: 7
-                    }, {
-                      colors: [[255,0,0],[255,63,63],[255,127,127],[255,191,191],[255,255,255],[170,170,255],[85,85,255],[0,0,255]],
-                      numClasses: 8
-                    }, {
-                      colors: [[255,0,0],[255,63,63],[255,127,127],[255,191,191],[255,255,255],[191,191,255],[127,127,255],[63,63,255],[0,0,255]],
-                      numClasses: 9
-                    }, {
-                      colors: [[255,0,0],[255,63,63],[255,127,127],[255,191,191],[255,255,255],[204,204,255],[153,153,255],[102,102,255],[51,51,255],[0,0,255]],
-                      numClasses: 10
-                    }, {
-                      colors: ["#67001f","#b2182b","#d6604d","#f4a582","#fddbc7","#f7f7f7","#d1e5f0","#92c5de","#4393c3","#2166ac","#053061"],
-                      numClasses: 11
                     }
                   ],
                   outline: {
@@ -482,7 +455,58 @@ require([
               }
             });
 
+          } else 
+          {const params = {
+            layer: layer,
+            valueExpression: getValueExpression(fieldSelect.value),
+            view: view,
+            classificationMethod: classificationMethod,
+            numClasses: 7,//parseInt(numClassesInput.value),
+            legendOptions: {
+              title: fieldLabel
+            },
+            colorScheme: {
+              id: "above-and-below/gray/div-blue-red",
+              colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[170,170,255],[85,85,255],[0,0,255]],
+              noDataColor: [0,0,0],
+              colorsForClassBreaks: [
+                {
+                  colors: [[242,240,247],[218,218,235],[188,189,220],[158,154,200],[128,125,186],[106,81,163],[74,20,134]],
+                  //colors: [[255,0,0],[255,85,85],[255,170,170],[255,255,255],[170,170,255],[85,85,255],[0,0,255]],
+                  //colors: [[140,81,10],[216,179,101],[246,232,195],[255,255,255],[199,234,229],[90,180,172],[1,102,94]],
+                  numClasses: 7
+                }
+              ],
+              outline: {
+                color: {r: 0, g: 0, b: 0, a: 0.25},
+                width: "1px"
+              },
+              opacity: 0.8
+            }
+
+          };
+    
+
+      // generate the renderer and set it on the layer
+      colorRendererCreator
+        .createClassBreaksRenderer(params)
+        .then(function (rendererResponse) {
+          layer.renderer = rendererResponse.renderer;
+
+          if (!map.layers.includes(layer)) {
+            map.add(layer);
           }
+
+          if (classSelect.value === "manual") {
+            // if manual is selected, then add or update
+            // a classed color slider to allow the user to
+            // construct manual class breaks
+            updateColorSlider(rendererResponse);
+          } else {
+            destroySlider();
+          }
+        });
+      }
         }
 
         // If manual classification method is selected, then create
@@ -745,7 +769,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [255,255,255],
+              color: [242,240,247],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -759,7 +783,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [252,187,161],
+              color: [218,218,235],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -773,7 +797,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [252,146,114],
+              color: [188,189,220],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -787,7 +811,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [251,106,74],
+              color: [158,154,200],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -801,7 +825,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [239,59,44],
+              color: [128,125,186],
               outline: {
                 color: [50, 50, 50, 0.6],       
                 width: 0.4
@@ -815,7 +839,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [203,24,29],
+              color: [106,81,163],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -829,7 +853,7 @@ require([
            symbol: {
              type: "simple-fill",
               style: "solid",
-              color: [153,0,13],
+              color: [74,20,134],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -945,7 +969,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [255,255,255],
+              color: [242,240,247],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -959,7 +983,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [252,187,161],
+              color: [218,218,235],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -973,7 +997,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [252,146,114],
+              color: [188,189,220],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -987,7 +1011,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [251,106,74],
+              color: [158,154,200],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -1001,7 +1025,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [239,59,44],
+              color: [128,125,186],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -1015,7 +1039,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [203,24,29],
+              color: [106,81,163],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -1029,7 +1053,7 @@ require([
            symbol: {
              type: "simple-fill",
               style: "solid",
-              color: [153,0,13],
+              color: [74,20,134],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
