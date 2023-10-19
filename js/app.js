@@ -31,12 +31,24 @@ require([
     let fieldSelect, classSelect, numClassesInput, slider;
 
     var popupMigration = {
-        title: "<b>2021 ACS Migration between Colorado and {NAME}</b>",
-        content: "{ACSNet21} Net Migrants<br>"+
-          "{ACSFr21} Migrants to Colorado<br>"+
-          "{ACSTo21} Migrants from Colorado",
+        title: "<b>2022 ACS Migration between Colorado and {NAME}</b>",
+        content: "{ACSNet22} Net Migrants<br>"+
+          "{ACSFr22} Migrants to Colorado<br>"+
+          "{ACSTo22} Migrants from Colorado",
           
         fieldInfos: [
+          {
+            fieldName: "ACSNet22",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "ACSFr22",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "ACSTo22",
+            format: {digitSeparator: true, places: 0}
+          },
           {
             fieldName: "ACSNet21",
             format: {digitSeparator: true, places: 0}
@@ -302,7 +314,13 @@ require([
           }
           // custom popup depending on migration flow
           console.log(fieldSelect.value);
-          if (fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSTo21"){console.log("ACS");
+          if (fieldSelect.value == "ACSNet22"||fieldSelect.value == "ACSFr22"||fieldSelect.value == "ACSTo22"){
+          layer.popupTemplate.title = "<b>2022 Census ACS Migration between Colorado and {NAME}</b>";
+          layer.popupTemplate.content = 
+          "{ACSNet22} Net Migrants<br>"+
+          "{ACSFr22} Migrants to Colorado<br>"+
+          "{ACSTo22} Migrants from Colorado";
+        } else if (fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSTo21"){console.log("ACS");
             layer.popupTemplate.title = "<b>2021 Census ACS Migration between Colorado and {NAME}</b>";
             layer.popupTemplate.content = 
             "{ACSNet21} Net Migrants<br>"+
@@ -361,15 +379,15 @@ require([
           }
 
           //determine proper color ramp depending on migration stat
-          if (fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
+          if (fieldSelect.value == "ACSNet22"||fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
           fieldSelect.value == "IndNet21"||fieldSelect.value == "IndNet20"||fieldSelect.value == "IndNet19"||
           fieldSelect.value == "RetNet21"||fieldSelect.value == "RetNet20"||fieldSelect.value == "RetNet19"){
             var cRamp = netClasses;
-          } else if (fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSFr19"||fieldSelect.value == "IndFr19"||
+          } else if (fieldSelect.value == "ACSFr22"||fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSFr19"||fieldSelect.value == "IndFr19"||
           fieldSelect.value == "IndFr20"||fieldSelect.value == "IndFr21"||fieldSelect.value == "RetFr21"||
           fieldSelect.value == "RetFr20"||fieldSelect.value == "RetFr19"){
             var cRamp = frClasses;
-          } else if (fieldSelect.value == "ACSTo21"||fieldSelect.value == "ACSTo19"||fieldSelect.value == "IndTo19"||
+          } else if (fieldSelect.value == "ACSTo22"||fieldSelect.value == "ACSTo21"||fieldSelect.value == "ACSTo19"||fieldSelect.value == "IndTo19"||
           fieldSelect.value == "IndTo20"||fieldSelect.value == "IndTo21"||fieldSelect.value == "RetTo21"||
           fieldSelect.value == "RetTo20"||fieldSelect.value == "RetTo19"){
             var cRamp = frClasses; 
@@ -400,7 +418,7 @@ require([
           if (classSelect.value === "fixed") {
            layer.renderer = fixedrenderer;
             map.add(layer);
-          } else if (fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
+          } else if (fieldSelect.value == "ACSNet22"||fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
           fieldSelect.value == "IndNet21"||fieldSelect.value == "IndNet20"||fieldSelect.value == "IndNet19"||
           fieldSelect.value == "RetNet21"||fieldSelect.value == "RetNet20"||fieldSelect.value == "RetNet19"||
           fieldSelect.value == "AIGNet19"||fieldSelect.value == "AIGNet20"||fieldSelect.value == "AIGNet21"){   
