@@ -277,7 +277,16 @@ require([
       container: "viewDiv",
       map: map,
       center: [-97.55, 37], // longitude, latitude
-      zoom: 3
+      zoom: 3,
+      popup: {
+       // autoOpenEnabled: false,
+        dockEnabled: true,
+        dockOptions: {
+          buttonEnabled: true,
+          breakpoint: false,
+          position: "bottom-right",
+        }
+      }
     });
     
     view.ui.move("zoom", "bottom-left");
@@ -329,6 +338,25 @@ require([
           view.ui.add(print, "top-right");
         });
 */
+
+    view.on("pointer-move", function (event) { 
+         view.hitTest(event).then(function (response) { 
+           if (response.results.length) { 
+             var graphic = response.results.filter(function (result) { 
+               // check if the graphic belongs to the layer of interest 
+               return result.graphic.layer === layer; 
+             })[0].graphic; 
+             view.popup.open({ 
+               location: graphic.geometry.centroid, 
+               features: [graphic] 
+             }); 
+           } else { 
+             view.popup.close(); 
+           } 
+         }); 
+       }); 
+      
+
     view.ui.add("infoDiv", "top-right");view.ui.add([expand1], "top-right");
 
         // Generate a new renderer each time the user changes an input parameter
