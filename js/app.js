@@ -31,12 +31,24 @@ require([
     let fieldSelect, classSelect, numClassesInput, slider;
 
     var popupMigration = {
-        title: "<b>2023 ACS Migration between Colorado and {NAME}</b>",
-        content: "{ACSNet23} Net Migrants<br>"+
-          "{ACSFr23} Migrants to Colorado<br>"+
-          "{ACSTo23} Migrants from Colorado",
+        title: "<b>2024 ACS Migration between Colorado and {NAME}</b>",
+        content: "{ACSNet24} Net Migrants<br>"+
+          "{ACSFr24} Migrants to Colorado<br>"+
+          "{ACSTo24} Migrants from Colorado",
           
         fieldInfos: [
+          {
+            fieldName: "ACSNet24",
+            format: {digitSeparator: true, places: 0}
+          },
+          {  
+            fieldName: "ACSFr24",
+            format: {digitSeparator: true, places: 0}
+          },
+          {
+            fieldName: "ACSTo24",
+            format: {digitSeparator: true, places: 0}
+          },
           {
             fieldName: "ACSNet23",
             format: {digitSeparator: true, places: 0}
@@ -299,7 +311,8 @@ require([
       view: view,
       content: legend,
       expandIconClass: "esri-icon-documentation",
-      expandTooltip: "Legend"
+      expandTooltip: "Legend",
+      expanded: true
     });
     
     var print = new Print({
@@ -390,7 +403,13 @@ require([
           }
           // custom popup depending on migration flow
           console.log(fieldSelect.value);
-          if (fieldSelect.value == "ACSNet23"||fieldSelect.value == "ACSFr23"||fieldSelect.value == "ACSTo23"){
+          if (fieldSelect.value == "ACSNet24"||fieldSelect.value == "ACSFr24"||fieldSelect.value == "ACSTo24"){
+            layer.popupTemplate.title = "<b>2024 Census ACS Migration between Colorado and {NAME}</b>";
+            layer.popupTemplate.content = 
+            "{ACSNet24} Net Migrants<br>"+
+            "{ACSFr24} Migrants to Colorado<br>"+
+            "{ACSTo24} Migrants from Colorado";
+          } else if (fieldSelect.value == "ACSNet23"||fieldSelect.value == "ACSFr23"||fieldSelect.value == "ACSTo23"){
             layer.popupTemplate.title = "<b>2023 Census ACS Migration between Colorado and {NAME}</b>";
             layer.popupTemplate.content = 
             "{ACSNet23} Net Migrants<br>"+
@@ -476,15 +495,15 @@ require([
           }
 
           //determine proper color ramp depending on migration stat
-          if (fieldSelect.value == "ACSNet23"||fieldSelect.value == "ACSNet22"||fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
+          if (fieldSelect.value == "ACSNet24"||fieldSelect.value == "ACSNet23"||fieldSelect.value == "ACSNet22"||fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
             fieldSelect.value == "IndNet22"||fieldSelect.value == "IndNet21"||fieldSelect.value == "IndNet20"||fieldSelect.value == "IndNet19"||
             fieldSelect.value == "RetNet22"||fieldSelect.value == "RetNet21"||fieldSelect.value == "RetNet20"||fieldSelect.value == "RetNet19"){
             var cRamp = netClasses;
-          } else if (fieldSelect.value == "ACSFr23"||fieldSelect.value == "ACSFr22"||fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSFr19"||fieldSelect.value == "IndFr19"||
+          } else if (fieldSelect.value == "ACSFr24"||fieldSelect.value == "ACSFr23"||fieldSelect.value == "ACSFr22"||fieldSelect.value == "ACSFr21"||fieldSelect.value == "ACSFr19"||fieldSelect.value == "IndFr19"||
           fieldSelect.value == "IndFr20"||fieldSelect.value == "IndFr22"||fieldSelect.value == "RetFr22"||fieldSelect.value == "IndFr21"||fieldSelect.value == "RetFr21"||
           fieldSelect.value == "RetFr20"||fieldSelect.value == "RetFr19"){
             var cRamp = frClasses;
-          } else if (fieldSelect.value == "ACSTo23"||fieldSelect.value == "ACSTo22"||fieldSelect.value == "ACSTo21"||fieldSelect.value == "ACSTo19"||fieldSelect.value == "IndTo19"||
+          } else if (fieldSelect.value == "ACSTo24"||fieldSelect.value == "ACSTo23"||fieldSelect.value == "ACSTo22"||fieldSelect.value == "ACSTo21"||fieldSelect.value == "ACSTo19"||fieldSelect.value == "IndTo19"||
           fieldSelect.value == "IndTo20"||fieldSelect.value == "IndTo22"||fieldSelect.value == "RetTo22"||fieldSelect.value == "IndTo21"||fieldSelect.value == "RetTo21"||
           fieldSelect.value == "RetTo20"||fieldSelect.value == "RetTo19"){
             var cRamp = frClasses; 
@@ -515,7 +534,7 @@ require([
           if (classSelect.value === "fixed") {
            layer.renderer = fixedrenderer;
             map.add(layer);
-          } else if (fieldSelect.value == "ACSNet23"||fieldSelect.value == "ACSNet22"||fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
+          } else if (fieldSelect.value == "ACSNet24"||fieldSelect.value == "ACSNet23"||fieldSelect.value == "ACSNet22"||fieldSelect.value == "ACSNet21"||fieldSelect.value == "ACSNet19"||
             fieldSelect.value == "IndNet22"||fieldSelect.value == "IndNet21"||fieldSelect.value == "IndNet20"||fieldSelect.value == "IndNet19"||
             fieldSelect.value == "RetNet22"||fieldSelect.value == "RetNet21"||fieldSelect.value == "RetNet20"||fieldSelect.value == "RetNet19"||
             fieldSelect.value == "AIGNet22"||fieldSelect.value == "AIGNet19"||fieldSelect.value == "AIGNet20"||fieldSelect.value == "AIGNet21"){   
@@ -740,7 +759,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [253,219,199],
+              color: [255,247,188],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -754,7 +773,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [239,138,98],
+              color: [254,196,79],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -768,7 +787,7 @@ require([
            symbol: {
              type: "simple-fill",
               style: "solid",
-              color: [178,24,43],
+              color: [217,95,14],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -840,7 +859,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [253,219,199],
+              color: [255,247,188],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -854,7 +873,7 @@ require([
            symbol: {
               type: "simple-fill",
               style: "solid",
-              color: [239,138,98],
+              color: [254,196,79],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
@@ -868,7 +887,7 @@ require([
            symbol: {
              type: "simple-fill",
               style: "solid",
-              color: [178,24,43],
+              color: [217,95,14],
               outline: {
                 color: [50, 50, 50, 0.6],
                 width: 0.4
